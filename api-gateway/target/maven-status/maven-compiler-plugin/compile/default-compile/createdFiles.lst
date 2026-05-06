@@ -1,0 +1,7 @@
+com\skybooker\api\filter\AuthenticationFilter$Config.class
+com\skybooker\api\filter\AuthenticationFilter.class
+com\skybooker\api\util\RouteValidator.class
+com\skybooker\api\dto\TokenValidationResponse.class
+com\skybooker\api\ApiGatewayApplication.class
+com\skybooker\api\config\OpenApiConfig.class
+com\skybooker\api\config\WebClientConfig.class
