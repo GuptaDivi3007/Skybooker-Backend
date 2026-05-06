@@ -1,0 +1,52 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: payment-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/payment_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: Guddan#@02
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+razorpay:
+  key-id: rzp_test_SiUp9NJue3OYap
+  key-secret: WNHlwXp5Rh74MXBQDtS9Z0GN
+  webhook-secret: ${RAZORPAY_WEBHOOK_SECRET:your_test_webhook_secret}
+  currency: INR
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+services:
+  booking-service:
+    base-url: http://booking-service
