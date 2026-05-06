@@ -1,0 +1,12 @@
+package com.skybooker.seat.dto;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+
+import java.util.List;
+
+public record AddSeatsRequest(
+        @NotEmpty(message = "Seat list cannot be empty")
+        List<@Valid SeatRequest> seats
+) {
+}
