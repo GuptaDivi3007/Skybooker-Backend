@@ -6,7 +6,7 @@ spring:
     name: flight-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/flight_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/flight_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kolkata
     username: root
     password: Guddan#@02
 
@@ -17,6 +17,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        jdbc:
+          time_zone: Asia/Kolkata
 
 eureka:
   instance:

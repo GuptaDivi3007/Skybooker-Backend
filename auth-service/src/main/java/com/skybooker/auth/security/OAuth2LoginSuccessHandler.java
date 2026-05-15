@@ -16,7 +16,6 @@ import java.io.IOException;
 
 @Component
 public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
-
     private final UserRepository userRepository;
     private final JwtService jwtService;
 
@@ -42,10 +41,11 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
             return;
         }
 
-        User user = userRepository.findByEmail(email.toLowerCase().trim()).orElseGet(() -> {
+        String normalizedEmail = email.toLowerCase().trim();
+        User user = userRepository.findByEmail(normalizedEmail).orElseGet(() -> {
             User newUser = new User();
             newUser.setFullName(name == null || name.isBlank() ? "Google User" : name);
-            newUser.setEmail(email);
+            newUser.setEmail(normalizedEmail);
             newUser.setPasswordHash(null);
             newUser.setPhone(null);
             newUser.setRole(Role.PASSENGER);

@@ -9,9 +9,16 @@ spring:
     include: secrets
 
   datasource:
-    url: jdbc:mysql://localhost:3306/auth_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/auth_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
     password: ${DB_PASSWORD:}
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2s
 
   jpa:
     hibernate:
@@ -76,6 +83,10 @@ notification:
     from: ${MAIL_FROM:gdivya3007@gmail.com}
 
 app:
+  redis:
+    refresh-token-prefix: "skybooker:auth:refresh:"
+    user-refresh-token-prefix: "skybooker:auth:user-refresh:"
+
   jwt:
     secret: ${JWT_SECRET:}
     access-token-expiration-ms: 86400000

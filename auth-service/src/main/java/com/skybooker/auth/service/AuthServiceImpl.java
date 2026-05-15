@@ -23,7 +23,6 @@ import java.util.Random;
 @Service
 @Transactional
 public class AuthServiceImpl implements AuthService {
-
     private final UserRepository userRepository;
     private final RegistrationOtpRepository registrationOtpRepository;
     private final PasswordEncoder passwordEncoder;
@@ -66,7 +65,7 @@ public class AuthServiceImpl implements AuthService {
         registrationOtp.setFullName(request.fullName().trim());
         registrationOtp.setPasswordHash(passwordEncoder.encode(request.password()));
         registrationOtp.setPhone(blankToNull(request.phone()));
-        registrationOtp.setRole((request.role() == null ? Role.PASSENGER : request.role()).name());
+        registrationOtp.setRole(Role.PASSENGER.name());
         registrationOtp.setPassportNumber(blankToNull(request.passportNumber()));
         registrationOtp.setNationality(blankToNull(request.nationality()));
         registrationOtp.setExpiresAt(LocalDateTime.now().plusMinutes(10));
